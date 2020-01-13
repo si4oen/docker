@@ -45,6 +45,10 @@ systemctl daemon-reload
 systemctl enable docker >/dev/null 2>&1
 systemctl start docker
 
+## Add vagrant user to docker group
+echo ">>>>> [TASK] Add vagrant user to docker group"
+usermod -aG docker vagrant
+
 ## Cleanup system >/dev/null 2>&1
 echo ">>>>> [TASK] Cleanup system"
 package-cleanup -y --oldkernels --count=1 >/dev/null 2>&1
