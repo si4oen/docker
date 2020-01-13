@@ -16,7 +16,7 @@ systemctl reload sshd
 
 ## Set Root Password
 echo "[TASK] Set root password"
-echo "ubuntu" | passwd --stdin root >/dev/null 2>&1
+echo "root:ubuntu" | sudo chpasswd >/dev/null 2>&1
 
 ## Update hosts file
 #echo "[TASK] Update host file /etc/hosts"
