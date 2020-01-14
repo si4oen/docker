@@ -54,7 +54,8 @@ echo ">>>>> [TASk] Install Python3.x & pip & git & awscli"
 yum install -y centos-release-scl >/dev/null 2>&1
 yum install -y rh-python36 >/dev/null 2>&1
 yum install -y python3-pip >/dev/null 2>&1
-pip3 install awscli >/dev/null 2>&1
+pip3 install --upgrade pip >/dev/null 2>&1
+pip install awscli >/dev/null 2>&1
 
 ## Cleanup system >/dev/null 2>&1
 echo ">>>>> [TASK] Cleanup system"
