@@ -6,7 +6,7 @@ yum install -y epel-release >/dev/null 2>&1
 yum update -y >/dev/null 2>&1
 
 ## Install ultilities packages
-echo ">>>>> [TASK] Install desired packages"
+echo ">>>>> [TASK] Install ultilities packages"
 yum install -y telnet htop net-tools wget nano >/dev/null 2>&1
 
 ## Enable password authentication
@@ -51,11 +51,11 @@ usermod -aG docker vagrant
 
 ## Install Python3.x & pip3 & git & awscli
 echo ">>>>> [TASk] Install Python3.x & pip & git & awscli"
+yum install -y git >/dev/null 2>&1
 yum install -y centos-release-scl >/dev/null 2>&1
 yum install -y rh-python36 >/dev/null 2>&1
 yum install -y python3-pip >/dev/null 2>&1
-pip3 install --upgrade pip >/dev/null 2>&1
-pip install awscli >/dev/null 2>&1
+pip3 install awscli >/dev/null 2>&1
 
 ## Cleanup system >/dev/null 2>&1
 echo ">>>>> [TASK] Cleanup system"
