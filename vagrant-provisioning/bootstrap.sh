@@ -5,7 +5,7 @@ echo ">>>>> [TASK] Update the system"
 yum install -y epel-release >/dev/null 2>&1
 yum update -y >/dev/null 2>&1
 
-## Install desired packages
+## Install ultilities packages
 echo ">>>>> [TASK] Install desired packages"
 yum install -y telnet htop net-tools wget nano >/dev/null 2>&1
 
@@ -49,7 +49,7 @@ systemctl start docker
 echo ">>>>> [TASK] Add vagrant user to docker group"
 usermod -aG docker vagrant
 
-## Install Python3.x & pip & git & awscli
+## Install Python3.x & pip3 & git & awscli
 echo ">>>>> [TASk] Install Python3.x & pip & git & awscli"
 yum install -y centos-release-scl >/dev/null 2>&1
 yum install -y rh-python36 >/dev/null 2>&1
