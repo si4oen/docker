@@ -1,12 +1,12 @@
 #!/bin/bash
 
 ## Update the system >/dev/null 2>&1
-echo ">>>>> [TASK] Updating the system"
+echo ">>>>> [TASK] Update the system"
 yum install -y epel-release >/dev/null 2>&1
 yum update -y >/dev/null 2>&1
 
 ## Install desired packages
-echo ">>>>> [TASK] Installing desired packages"
+echo ">>>>> [TASK] Install desired packages"
 yum install -y telnet htop net-tools wget nano >/dev/null 2>&1
 
 ## Enable password authentication
@@ -40,7 +40,7 @@ yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce
 yum install -y -q docker-ce >/dev/null 2>&1
 
 ## Enable docker service
-echo ">>>>> [TASK] Enable and start docker service"
+echo ">>>>> [TASK] Enable & start docker service"
 systemctl daemon-reload
 systemctl enable docker >/dev/null 2>&1
 systemctl start docker
@@ -48,6 +48,14 @@ systemctl start docker
 ## Add vagrant user to docker group
 echo ">>>>> [TASK] Add vagrant user to docker group"
 usermod -aG docker vagrant
+
+## Install Python3.x & pip & git & awscli
+echo ">>>>> [TASk] Install Python3.x & pip & git & awscli"
+yum install centos-release-scl >/dev/null 2>&1
+yum install rh-python36 >/dev/null 2>&1
+yum install python3-pip >/dev/null 2>&1
+pip install --upgrade pip >/dev/null 2>&1
+pip install awscli >/dev/null 2>&1
 
 ## Cleanup system >/dev/null 2>&1
 echo ">>>>> [TASK] Cleanup system"
