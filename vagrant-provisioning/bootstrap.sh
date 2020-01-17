@@ -1,5 +1,9 @@
 #!/bin/bash
 
+## Set TimeZone to Asia/Ho_Chi_Minh
+echo "===== [TASK] Set TimeZone to Asia/Ho_Chi_Minh"
+timedatectl set-timezone Asia/Ho_Chi_Minh
+
 ## Update the system >/dev/null 2>&1
 echo ">>>>> [TASK] Update the system"
 yum install -y epel-release >/dev/null 2>&1
@@ -49,6 +53,16 @@ systemctl start docker
 echo ">>>>> [TASK] Add vagrant user to docker group"
 usermod -aG docker vagrant
 
+## Update hosts file
+echo "[TASK] Update host file /etc/hosts"
+cat >>/etc/hosts<<EOF
+192.168.16.151 docker1.testlab.local docker1
+192.168.16.141 jenkins1.testlab.local jenkins1
+192.168.16.130 kmaster.testlab.local kmaster
+192.168.16.131 kworker1.testlab.local kworker1
+192.168.16.132 kworker2.testlab.local kworker2
+EOF
+
 ## Install Python3.x & pip3 & git & awscli
 echo ">>>>> [TASk] Install Python3.x & pip & git & awscli"
 yum install -y git >/dev/null 2>&1
@@ -67,16 +81,3 @@ rm -f /var/log/wtmp /var/log/btmp
 #dd if=/dev/zero of=/EMPTY bs=1M
 #rm -f /EMPTY
 cat /dev/null > ~/.bash_history && history -c
-
-## Update hosts file
-#echo "[TASK] Update host file /etc/hosts"
-#cat >>/etc/hosts<<EOF
-#172.42.42.10 server.example.com server
-#172.42.42.20 client.example.com client
-#EOF
-
-## Rebooting Server
-#echo ">>>>> [TASK] Rebooting server"
-#echo ""
-#echo "########## Finished ##########"
-#sudo reboot now
