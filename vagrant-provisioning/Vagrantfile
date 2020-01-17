@@ -33,8 +33,6 @@ Vagrant.configure(2) do |config|
     config.vbguest.no_remote = true
   end
 
-	##resize hard disk of Vagrant box # must install 'vagrant plugin install vagrant-disksize'
-  #config.disksize.size = '20GB' 
 	NodeCount = 1 #number of node(s) to deploy
   (1..NodeCount).each do |i|
 	  config.vm.define "#{BOX_NAME}#{i}" do |node|
