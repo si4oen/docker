@@ -56,6 +56,7 @@ usermod -aG docker vagrant
 ## Update hosts file
 echo ">>>>> [TASK] Update host file /etc/hosts"
 cat >>/etc/hosts<<EOF
+192.168.16.161 gitlab1.testlab.local gitlab1
 192.168.16.151 docker1.testlab.local docker1
 192.168.16.141 jenkins1.testlab.local jenkins1
 192.168.16.130 kmaster.testlab.local kmaster
