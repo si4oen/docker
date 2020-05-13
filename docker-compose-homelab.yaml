@@ -314,7 +314,36 @@ services:
       - $USERDIR/docker/drive:/drive:rw
       - $USERDIR/docker/record:/record:rw
 
-########################### MAINTAINANCE
+# VSCode - VSCode Editing
+  code-server:
+    image: linuxserver/code-server
+    container_name: code_server
+    restart: unless-stopped
+    networks:
+      - t2_proxy
+#    ports:
+#      - 8443:8443
+    environment:
+      - PUID=$PUID
+      - PGID=$PGID
+      - TZ=$TZ
+      - PASSWORD=$VSCODE_PASSWORD #optional
+      - SUDO_PASSWORD=$VSCODE_SUDO_PASSWORD #optional
+    volumes:
+      - $USERDIR/docker/vscode/config:/config
+    labels:
+      - "traefik.enable=true"
+      ## HTTP Routers
+      - "traefik.http.routers.vscode-rtr.entrypoints=https"
+      - "traefik.http.routers.vscode-rtr.rule=Host(`code.$DOMAINNAME`)"
+      - "traefik.http.routers.vscode-rtr.tls=true"
+      ## Middlewares
+      - "traefik.http.routers.vscode-rtr.middlewares=chain-oauth@file"
+      ## HTTP Services
+      - "traefik.http.routers.vscode-rtr.service=vscode-svc"
+      - "traefik.http.services.vscode-svc.loadbalancer.server.port=8443"
+
+########################### MAINTENANCE
 # Traefik Certs Dumper - Extract LetsEncrypt Certificates - Traefik2 Compatible
   certdumper:
     container_name: traefik_certdumper
