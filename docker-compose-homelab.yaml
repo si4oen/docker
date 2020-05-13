@@ -325,3 +325,15 @@ services:
 #    - /var/run/docker.sock:/var/run/docker.sock:ro # only needed if restarting containers
     environment:
       DOMAIN: $DOMAINNAME
+
+# Cloudflare DDNS - Dynamic DNS Updater
+  cloudddns:
+    container_name: cloudflare_ddns
+    restart: always
+    image: joshava/cloudflare-ddns
+    volumes:
+      - $USERDIR/docker/cloudflare-ddns/config.yaml:/app/config.yaml
+    environment:
+      - PUID=$PUID
+      - PGID=$PGID
+      - TZ=$TZ
