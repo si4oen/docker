@@ -311,8 +311,8 @@ services:
     security_opt:
       - no-new-privileges:true
     volumes:
-      - $USERDIR/docker/drive:/drive:rw
-      - $USERDIR/docker/record:/record:rw
+      - $USERDIR/docker/guacamole/drive:/drive:rw
+      - $USERDIR/docker/guacamole/record:/record:rw
 
 # VSCode - VSCode Editing
   code-server:
